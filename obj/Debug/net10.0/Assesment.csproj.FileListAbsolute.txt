@@ -218,3 +218,4 @@ C:\Users\Connor\source\repos\Assesment\bin\Debug\net10.0\Microsoft.Extensions.Fi
 C:\Users\Connor\source\repos\Assesment\bin\Debug\net10.0\Microsoft.Extensions.FileSystemGlobbing.dll
 C:\Users\Connor\source\repos\Assesment\bin\Debug\net10.0\Microsoft.Extensions.Primitives.dll
 c:\Users\Connor\source\repos\Assesment\bin\Debug\net10.0\FluentAssertions.dll
+C:\Users\Connor\source\repos\Assesment\obj\Debug\net10.0\Assesment.sourcelink.json

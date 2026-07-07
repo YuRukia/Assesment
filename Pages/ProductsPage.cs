@@ -15,24 +15,49 @@ public class ProductsPage : BasePage
 
         foreach(var purchase in purchases)
         {
-            ILocator cartLocator = page.Locator("[data-test='shopping-cart-badge']");
-            int cartItemCount = 0;
-            if(await ElementPresent(cartLocator)){cartItemCount = int.Parse(await GetInnerText(cartLocator));}
-
-            ILocator name = page.Locator("[data-test='inventory-item']").GetByText(purchase.Name);
-            ILocator parent = name.Locator("..").Locator("..").Locator("..");
-            ILocator cost = parent.GetByText(purchase.Cost);
-            ILocator description = parent.GetByText(purchase.Description);
-            ILocator addToCartButton = parent.GetByText("Add to cart");
-
-            await CheckInnerText(name, purchase.Name);
-            await CheckInnerText(cost, purchase.Cost);
-            await CheckInnerText(description, purchase.Description);
-            await ClickElement(addToCartButton);
-            await Expect(cartLocator).ToHaveTextAsync((cartItemCount + 1).ToString());
+            await AddItem(page, purchase);
         }
         
         await GoToCart(page);
+    }
+
+    public async Task AddItem(IPage page, Product purchase)
+    {
+        ILocator cartLocator = page.Locator("[data-test='shopping-cart-badge']");
+        int cartItemCount = 0;
+        if(await ElementPresent(cartLocator)){cartItemCount = int.Parse(await GetInnerText(cartLocator));}
+
+        ILocator name = page.Locator("[data-test='inventory-item']").GetByText(purchase.Name);
+        ILocator parent = name.Locator("..").Locator("..").Locator("..");
+        ILocator cost = parent.GetByText(purchase.Cost);
+        ILocator description = parent.GetByText(purchase.Description);
+        ILocator addToCartButton = parent.GetByText("Add to cart");
+
+        await CheckInnerText(name, purchase.Name);
+        await CheckInnerText(cost, purchase.Cost);
+        await CheckInnerText(description, purchase.Description);
+        await ClickElement(addToCartButton);
+        await Expect(cartLocator).ToHaveTextAsync((cartItemCount + 1).ToString());
+    }
+
+    public async Task RemoveItem(IPage page, Product purchase)
+    {
+        ILocator cartLocator = page.Locator("[data-test='shopping-cart-badge']");
+        int cartItemCount = 0;
+        if(await ElementPresent(cartLocator)){cartItemCount = int.Parse(await GetInnerText(cartLocator));}
+
+        ILocator name = page.Locator("[data-test='inventory-item']").GetByText(purchase.Name);
+        ILocator parent = name.Locator("..").Locator("..").Locator("..");
+        ILocator cost = parent.GetByText(purchase.Cost);
+        ILocator description = parent.GetByText(purchase.Description);
+        ILocator removeFromCartButton = parent.GetByText("Remove");
+
+        await CheckInnerText(name, purchase.Name);
+        await CheckInnerText(cost, purchase.Cost);
+        await CheckInnerText(description, purchase.Description);
+        await ClickElement(removeFromCartButton);
+        if(cartItemCount - 1 > 0){await Expect(cartLocator).ToHaveTextAsync((cartItemCount - 1).ToString());}
+        else{await Expect(cartLocator).ToHaveCountAsync(0);}   
     }
 
     public async Task GoToCart(IPage page)

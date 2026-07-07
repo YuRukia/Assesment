@@ -6,6 +6,9 @@ namespace Config;
 public class AppSettings
 {
     public readonly string testPath;
+    public readonly string browser;
+    public readonly bool headless;
+    public readonly int slowmode;
     public readonly string url;
     public readonly string defaultUser;
     public readonly string lockedUser;
@@ -21,6 +24,10 @@ public class AppSettings
         IConfigurationRoot config = new ConfigurationBuilder().AddJsonFile(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "../../../Config/appsettings.json"))).Build();
 
         testPath = config.GetSection("ConfigData")["TestPath"] ?? throw new ArgumentNullException();
+        browser = config.GetSection("ConfigData")["Browser"] ?? throw new ArgumentNullException();
+        headless = bool.Parse(config.GetSection("ConfigData")["Headless"] ?? throw new ArgumentNullException());
+        slowmode = int.Parse(config.GetSection("ConfigData")["SlowMo"] ?? throw new ArgumentNullException());
+        
         url = config.GetSection("TestData")["Url"] ?? throw new ArgumentNullException();
         defaultUser = config.GetSection("TestData:Users")["Default"] ?? throw new ArgumentNullException();
         lockedUser = config.GetSection("TestData:Users")["Locked"] ?? throw new ArgumentNullException();
