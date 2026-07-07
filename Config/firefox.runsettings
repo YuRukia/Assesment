@@ -3,7 +3,8 @@
     <Playwright>
         <BrowserName>firefox</BrowserName>
         <LaunchOptions>
-            <Headless>false</Headless>
+            <Headless>true</Headless>
+            <SlowMo>0</SlowMo>
         </LaunchOptions>
     </Playwright>
 </RunSettings>
