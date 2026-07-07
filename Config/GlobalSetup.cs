@@ -14,6 +14,7 @@ public class Setup : PageTest
     public CheckoutInformationPage checkoutInformationPage;
     public CheckoutOverviewPage checkoutOverviewPage;
     public CheckoutCompletePage checkoutCompletePage;
+    public ItemPage itemPage;
 
     public async Task SetUp(IPage page, string testID, string user = "-1", string password = "-1")
     {
@@ -28,6 +29,7 @@ public class Setup : PageTest
         checkoutInformationPage = new CheckoutInformationPage();
         checkoutOverviewPage = new CheckoutOverviewPage();
         checkoutCompletePage = new CheckoutCompletePage();
+        itemPage = new ItemPage();
 
         await basePage.NavigateTo(page, Configuration.url);
     }

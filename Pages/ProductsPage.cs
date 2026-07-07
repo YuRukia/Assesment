@@ -57,7 +57,7 @@ public class ProductsPage : BasePage
         await CheckInnerText(description, purchase.Description);
         await ClickElement(removeFromCartButton);
         if(cartItemCount - 1 > 0){await Expect(cartLocator).ToHaveTextAsync((cartItemCount - 1).ToString());}
-        else{await Expect(cartLocator).ToHaveCountAsync(0);}   
+        else{await Expect(cartLocator).ToHaveCountAsync(0);}
     }
 
     public async Task GoToCart(IPage page)
@@ -75,5 +75,23 @@ public class ProductsPage : BasePage
         ILocator logoutButton = page.Locator("[data-test='logout-sidebar-link']");
         await ClickElement(logoutButton);
         await Expect(page).ToHaveURLAsync(getUrl());
+    }
+
+    public async Task EnterItem(IPage page, Product purchase)
+    {
+        ILocator itemLink = page.Locator("[data-test='inventory-item-name']").GetByText(purchase.Name).Locator("..");
+        await ClickElement(itemLink);
+
+        ILocator name = page.Locator("[data-test='inventory-item-name']");
+        ILocator cost = page.Locator("[data-test='inventory-item-price']");
+        ILocator description = page.Locator("[data-test='inventory-item-desc']");
+        ILocator addButton = page.Locator("[data-test='add-to-cart']");
+        ILocator removeButton = page.Locator("[data-test='remove']");
+
+        await CheckInnerText(name, purchase.Name);
+        await CheckInnerText(cost, purchase.Cost);
+        await CheckInnerText(description, purchase.Description);
+        if(await ElementPresent(addButton)){await CheckInnerText(addButton, "Add to cart");}
+        else if(await ElementPresent(removeButton)){await CheckInnerText(removeButton, "Remove");}
     }
 }

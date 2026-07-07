@@ -1,7 +1,6 @@
 using Config;
 using Constants;
 using Microsoft.Playwright;
-using Pages;
 
 namespace InventoryTests;
 
