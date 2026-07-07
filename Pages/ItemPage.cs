@@ -7,7 +7,6 @@ public class ItemPage : BasePage
 {
     public async Task AddItem(IPage page, Product purchase)
     {
-        //Need to move this into it's own method, repeated code is wasted
         ILocator cartLocator = page.Locator("[data-test='shopping-cart-badge']");
         int cartItemCount = 0;
         if(await ElementPresent(cartLocator)){cartItemCount = int.Parse(await GetInnerText(cartLocator));}
