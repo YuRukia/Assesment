@@ -18,3 +18,11 @@ Test Categories
 - 'CheckoutTests'
 - 'InventoryTests'
 - 'ItemTests'
+
+Runsettings
+- Runsettings files are located in Config/<browser>.runsettings
+- These files are used when running from commandline
+
+IDE Runsettings
+- Runsettings for IDE are located in Config/appsettings.json
+- These are used by the IDE Test Explorer when running tests
