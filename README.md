@@ -33,7 +33,7 @@ IDE Runsettings
 - These are used by the IDE Test Explorer when running tests
 
 Website Choice
-I chose SauceDemo since I was already familiar with the website. I have used it for training when teaching myself other languages/testing frameworks before.
+- I chose SauceDemo since I was already familiar with the website. I have used it for training when teaching myself other languages/testing frameworks before.
 
 AI Usage Declaration
-I did not use AI for this project.
+- I did not use AI for this project.
